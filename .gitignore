@@ -1,0 +1,4 @@
+*.swp
+*.pyc
+git_bigfile.egg-info/
+dist/

@@ -1,0 +1,65 @@
+#!/usr/bin/env python
+"""git-bigfile
+
+Usage: git-bigfile [-h] (add <filename>|clear|config [--global]|
+                         filter-clean|filter-smudge|push|pull|status)
+
+Commands
+    add <filename>  add <filename> to .gitattributes and to the index
+    clear           remove pushed files from cache
+    config          help to configure the git-bigfile filter options
+    filter-clean    replace the bigfile received on stdin with its SHA
+    filter-smudge   try to replace the SHA file with the corresponding bigfile
+    push            push cached files to the server
+    pull            expand bigfiles by pulling them from the server if needed
+    status          display the status of all bigfiles
+
+Options:
+    -h --help       display this help
+    --version       show version
+    --global        update the global config file, instead of the current
+                    repository config
+"""
+
+from docopt import docopt
+from gitbigfile import command, __version__
+
+
+def extract(parameters):
+    """Extract from the parameters dictionary the (cmd, args, options)"""
+    cmd = None
+    args = []
+    options = {}
+    for param, value in parameters.items():
+        # Look for options
+        if param.startswith('--'):
+            # Only add options set to True
+            # (options should always be set to False
+            # by default)
+            if value:
+                # Remove '--' from option name
+                # and add '_flag' to avoid python reserved keywords (global)
+                options[param[2:] + '_flag'] = value
+        # Look for arguments
+        elif param.startswith('<') and param.endswith('>') or param.isupper():
+            if value:
+                args.append(value)
+        # Rest should be commands and only one is allowed
+        elif value:
+            cmd = param.replace('-', '_')
+    return (cmd, args, options)
+
+
+def main():
+    """entry point"""
+    parameters = docopt(__doc__, version=__version__)
+    cmd, args, options = extract(parameters)
+    if cmd == 'config':
+        command.config(**options)
+    else:
+        git_bigfile = command.GitBigfile()
+        getattr(git_bigfile, cmd)(*args, **options)
+
+
+if __name__ == '__main__':
+    main()
