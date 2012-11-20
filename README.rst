@@ -2,9 +2,10 @@
 git-bigfile
 ===========
 
-git-bigfile is a port to python / fork of Scott Chacon git-media.
+git-bigfile is a port to python / fork of Scott Chacon git-media_.
 It allows you to use Git with large files without storing the file in Git itself.
 
+.. _git-media: https://github.com/schacon/git-media
 
 Configuration
 -------------
