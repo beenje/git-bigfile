@@ -43,7 +43,7 @@ def get_bigfile_dir(name):
 def get_git_config():
     """Return a dictionary with all git options"""
     config = run('git config --list')
-    return dict([item.split('=') for item in config.split('\n')])
+    return dict([item.split('=', 1) for item in config.split('\n')])
 
 
 def get_gitattributes():
