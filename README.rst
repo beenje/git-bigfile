@@ -121,5 +121,5 @@ Copyright
 ---------
 
 Original work Copyright (c) 2009 Scott Chacon.
-Modified work Copyright (c) 2012 Benjamin Bertrand.
+Modified work Copyright (c) 2012-2013 Benjamin Bertrand.
 See LICENSE for details.
