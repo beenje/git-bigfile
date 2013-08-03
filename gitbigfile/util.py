@@ -40,10 +40,25 @@ def get_bigfile_dir(name):
     return bigfile_dir
 
 
+def convert(item):
+    """Try to guess item data type
+
+    Return an int, float or the original item (string)
+    """
+    for typ in (int, float):
+        try:
+            return typ(item)
+        except ValueError:
+            pass
+    else:
+        return item
+
+
 def get_git_config():
     """Return a dictionary with all git options"""
     config = run('git config --list')
-    return dict([item.split('=', 1) for item in config.split('\n')])
+    items = [item.split('=', 1) for item in config.split('\n')]
+    return dict([(key, convert(value)) for key, value in items])
 
 
 def get_gitattributes():
