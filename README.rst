@@ -2,10 +2,17 @@
 git-bigfile
 ===========
 
+This project is deprecated.
+I used it for a while and it's still working but I won't update it.
+I switched to git-lfs_ and recommend it especially if you use Gitlab_.
+
+
 git-bigfile is a port to python / fork of Scott Chacon git-media_.
 It allows you to use Git with large files without storing the file in Git itself.
 
 .. _git-media: https://github.com/schacon/git-media
+.. _git-lfs: https://git-lfs.github.com
+.. _Gitlab: https://about.gitlab.com
 
 Configuration
 -------------
