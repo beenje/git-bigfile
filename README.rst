@@ -1,10 +1,11 @@
-===========
-git-bigfile
-===========
+========================
+git-bigfile [DEPRECATED]
+========================
 
-This project is deprecated.
+**This project is deprecated.**
 I used it for a while and it's still working but I won't update it.
 I switched to git-lfs_ and recommend it especially if you use Gitlab_.
+See `switching from git-bigfile to git-lfs <http://beenje.github.io/blog/posts/switching-from-git-bigfile-to-git-lfs/>`_.
 
 
 git-bigfile is a port to python / fork of Scott Chacon git-media_.
